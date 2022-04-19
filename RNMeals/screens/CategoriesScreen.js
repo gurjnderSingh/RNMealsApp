@@ -8,7 +8,7 @@ import CategoryGridTile from '../components/CategoryGridTile'
 //     return <CategoryGridTile title={item.title}/>
 // }
 function renderCategoryItem(itemData) {
-    return <CategoryGridTile title={itemData.item.title}/>
+    return <CategoryGridTile title={itemData.item.title} color={itemData.item.color}/>
 }
 function CategoriesScreen(){
     return <FlatList
@@ -16,6 +16,7 @@ function CategoriesScreen(){
     keyExtractor={(item)=> item.id}
   //  renderItem={(item)=>renderCategoryItem(item)}
     renderItem={renderCategoryItem}
+    numColumns={2}
      />
 }
 

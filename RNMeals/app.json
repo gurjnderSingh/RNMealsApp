@@ -1,4 +1,5 @@
 {
   "name": "RNMeals",
-  "displayName": "RNMeals"
+  "displayName": "RNMeals",
+  "backgroundColor":"green"
 }
