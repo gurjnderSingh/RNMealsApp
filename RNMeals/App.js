@@ -9,6 +9,7 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native'
 import CategoriesScreen from './screens/CategoriesScreen';
+import MealsOverScreen from './screens/MealsOverViewScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
@@ -19,7 +20,8 @@ function App() {
     // <View></View>
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name='MealsApp' component={CategoriesScreen}/>
+        <Stack.Screen name='MealsCategories' component={CategoriesScreen}/>
+        <Stack.Screen name='MealsOverView' component={MealsOverScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   )

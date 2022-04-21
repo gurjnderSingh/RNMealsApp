@@ -1,10 +1,11 @@
 import React from 'react'
 import {Text,View, Pressable, StyleSheet, Platform} from 'react-native'
 
-function CategoryGridTile({title, color}) {
+function CategoryGridTile({title, color,onPressCell}) {
     return(
         <View style= {[style.gridItem]}>
             <Pressable 
+            onPress={onPressCell}
             style={({pressed})=> [style.button, pressed ? style.buttonPressed : null]}>
                 <View style={[style.innerContainer,{backgroundColor: color}]}> 
                     <Text style={style.title}>{title}</Text>
@@ -14,9 +15,9 @@ function CategoryGridTile({title, color}) {
     )
 }
 
-export default CategoryGridTile
+export default CategoryGridTile;
 const style = StyleSheet.create({
-    gridItem: {
+gridItem:{
         flex:1,
         margin: 10,
         height: 150,

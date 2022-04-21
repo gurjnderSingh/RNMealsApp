@@ -1,4 +1,7 @@
 class Meal {
+  // constructor(name) {
+  //   this.name = name
+  // },
   constructor(
     id,
     categoryIds,
