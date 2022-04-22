@@ -1,22 +1,23 @@
-
-import React from 'react'
-import {FlatList, Text} from 'react-native'
-import {CATEGORIES} from '../data/dummy-data'
-import CategoryGridTile from '../components/CategoryGridTile'
+import React from 'react';
+import {FlatList, Text} from 'react-native';
+import {CATEGORIES} from '../data/dummy-data';
+import CategoryGridTile from '../components/CategoryGridTile';
 
 // function renderCategoryItem({item}) {
 //     return <CategoryGridTile title={item.title}/>
 // }
-
-
-function CategoriesScreen({navigation}){
-  function pressHandler(){
-    navigation.navigate('MealsOverView')
-  }
-  function renderCategoryItem(itemData) {
-    return <CategoryGridTile title={itemData.item.title} color={itemData.item.color} onPressCell={pressHandler}/>
+function pressHandler(navigation) {
+  navigation.navigate('MealsOverView');
 }
-    return <FlatList
+function CategoriesScreen({navigation}) {
+  function renderCategoryItem(itemData) {
+    return < CategoryGridTile 
+    title = { itemData.item.title } 
+    color = {itemData.item.color} 
+    onPressCell={pressHandler.bind(this,navigation)}
+    />
+}
+return <FlatList
      data={CATEGORIES}
     keyExtractor={(item)=> item.id}
   //  renderItem={(item)=>renderCategoryItem(item)}

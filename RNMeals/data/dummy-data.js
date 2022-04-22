@@ -43,7 +43,7 @@ export const MEALS = [
     false,
     true,
     true,
-    true
+    true,
   ),
 
   new Meal(
@@ -59,7 +59,7 @@ export const MEALS = [
       '1 Slice Ham',
       '1 Slice Pineapple',
       '1-2 Slices of Cheese',
-      'Butter'
+      'Butter',
     ],
     [
       'Butter one side of the white bread',
@@ -69,7 +69,7 @@ export const MEALS = [
     false,
     false,
     false,
-    false
+    false,
   ),
 
   new Meal(
@@ -86,7 +86,7 @@ export const MEALS = [
       '1 Cucumber',
       '1 Onion',
       'Ketchup',
-      '2 Burger Buns'
+      '2 Burger Buns',
     ],
     [
       'Form 2 patties',
@@ -98,7 +98,7 @@ export const MEALS = [
     false,
     false,
     false,
-    true
+    true,
   ),
 
   new Meal(
@@ -117,7 +117,7 @@ export const MEALS = [
       '300ml Butter',
       '100g Vegetable Oil',
       'Salt',
-      'Lemon Slices'
+      'Lemon Slices',
     ],
     [
       'Tenderize the veal to about 2–4mm, and salt on both sides.',

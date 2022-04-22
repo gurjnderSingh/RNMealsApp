@@ -1,11 +1,18 @@
-import React from 'react'
-import {Text,View, Pressable, StyleSheet, Platform} from 'react-native'
+import React from 'react';
+import {Text, View, Pressable, StyleSheet, Platform} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
-function CategoryGridTile({title, color,onPressCell}) {
-    return(
+function CategoryGridTile({title, color, onPressCell}) {
+const navigation = useNavigation();
+
+function gotoMealsOverView() {
+    navigation.navigate('MealsOverView'); //// Alternative you can use useNavigation Hook to navigate
+}
+return (
         <View style= {[style.gridItem]}>
             <Pressable 
-            onPress={onPressCell}
+          //  onPress={onPressCell} 
+          onPress={gotoMealsOverView}
             style={({pressed})=> [style.button, pressed ? style.buttonPressed : null]}>
                 <View style={[style.innerContainer,{backgroundColor: color}]}> 
                     <Text style={style.title}>{title}</Text>
