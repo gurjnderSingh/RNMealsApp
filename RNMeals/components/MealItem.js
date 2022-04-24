@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet, Pressable, Platform} from 'react-native';
-import MealDetail from '../screens/MealDetail';
+import MealDetail from './MealDetail';
 // import {useNavigation} from '@react-navigation/native'
 
 function MealItem({
@@ -23,12 +23,11 @@ function MealItem({
             <Image source={{uri: imageUrl}} style={style.image} />
             <Text style={style.title}>{title}</Text>
           </View>
-
-          <View style={style.detail}>
-            <Text style={style.detailItem}>{duration}m</Text>
-            <Text style={style.detailItem}>{complexity.toUpperCase()}</Text>
-            <Text style={style.detailItem}>{affordability.toUpperCase()}</Text>
-          </View>
+          <MealDetail
+            duration={duration}
+            complexity={complexity}
+            affordability={affordability}
+          />
         </View>
       </Pressable>
     </View>
@@ -43,16 +42,6 @@ const style = StyleSheet.create({
   },
   opacity: {
     opacity: 0.5,
-  },
-  detail: {
-    flexDirection: 'row',
-    padding: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  detailItem: {
-    fontSize: 20,
-    marginHorizontal: 10, // left right space
   },
   mealItem: {
     margin: 10,

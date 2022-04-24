@@ -11,32 +11,35 @@ import CategoryGridTile from '../components/CategoryGridTile';
 // }
 
 function CategoriesScreen({navigation}) {
-  
 //   function renderCategoryItem(itemData) {
-//     return < CategoryGridTile 
-//     title = { itemData.item.title } 
-//     color = {itemData.item.color} 
-//     onPressCell={pressHandler.bind(this,navigation)}
-//     />
-// }
-function renderCategoryItem(item) {
-  function pressHandler() {
-    navigation.navigate('MealsOverView',{categoryId: item.id}); // passing data
-  }
-      return < CategoryGridTile 
-      title = { item.title } 
-      color = {item.color} 
-     // onPressCell={pressHandler.bind(this,navigation)}
-     onPressCell={pressHandler}
+  //     return < CategoryGridTile
+  //     title = { itemData.item.title }
+  //     color = {itemData.item.color}
+  //     onPressCell={pressHandler.bind(this,navigation)}
+  //     />
+  // }
+  function renderCategoryItem(item) {
+    function pressHandler() {
+      navigation.navigate('MealsOverView', {categoryId: item.id}); // passing data
+    }
+    return (
+      <CategoryGridTile
+        title={item.title}
+        color={item.color}
+        // onPressCell={pressHandler.bind(this,navigation)}
+        onPressCell={pressHandler}
       />
+    )
   }
-return <FlatList
-     data={CATEGORIES}
-    keyExtractor={(item)=> item.id}
-   renderItem={({item})=>renderCategoryItem(item)}
-    // renderItem={renderCategoryItem}
-    numColumns={2}
-     />
+  return (
+    <FlatList
+      data={CATEGORIES}
+      keyExtractor={item => item.id}
+      renderItem={({item}) => renderCategoryItem(item)}
+      // renderItem={renderCategoryItem}
+      numColumns={2}
+    />
+  )
 }
 
 export default CategoriesScreen

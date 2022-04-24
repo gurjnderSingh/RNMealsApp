@@ -22,12 +22,16 @@ function MealsOverScreen({route, navigation}) {
     });
   }, [catId, navigation]);
 
-  function goToMealDetailScreen() {
-    navigation.navigate('MealDeail');
-    console.log('show detail');
-  }
+ 
   function renderMealItem(itemData) {
     const item = itemData.item;
+
+    function goToMealDetailScreen() {
+      console.log('meal is is', item.id)
+      navigation.navigate('MealDeail',{
+        mealId: item.id
+      });
+    }
     const allData = {
       title: item.title,
       imageUrl: item.imageUrl,
