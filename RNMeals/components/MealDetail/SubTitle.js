@@ -20,7 +20,7 @@ const style = StyleSheet.create({
       subtitleContainer: {
         borderBottomColor: 'black',
         borderBottomWidth: 2,
-        marginHorizontal: 60,
+        marginHorizontal: 15,
         margin: 2,
       },
 })

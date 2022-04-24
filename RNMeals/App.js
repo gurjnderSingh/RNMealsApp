@@ -43,7 +43,7 @@ function App() {
         <Stack.Screen
         name="MealsCategories"
         component={CategoriesScreen}
-          options={{title: 'Meal Categories'}}
+        options={{title: 'Meal Categories'}}
           //options={{ title: "Meal Categories", headerTitle: (props) => <LogoTitle {...props} />}}
         />
         <Stack.Screen
