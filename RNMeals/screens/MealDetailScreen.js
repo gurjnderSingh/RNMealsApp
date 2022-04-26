@@ -14,7 +14,7 @@ function MealDetailScreen({route, navigation}) {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
-        return <Button title="click" onPress={handlePress} />
+        return <Button title="Fav" onPress={handlePress} />
       },
     });
   }, [navigation, handlePress]);

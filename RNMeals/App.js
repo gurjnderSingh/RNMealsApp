@@ -7,14 +7,18 @@
  */
 
 import React from 'react';
-import {StyleSheet, Button} from 'react-native';
+import {StyleSheet, Button, Image} from 'react-native';
 import CategoriesScreen from './screens/CategoriesScreen';
 import MealsOverScreen from './screens/MealsOverViewScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import MealDetailScreen from './screens/MealDetailScreen';
-let Stack = createNativeStackNavigator();
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import FavouriteScreen from './screens/FavouriteScreen';
+import FavoritesContextProvider from './Store/Context/Favourite-Context';
 
+let Stack = createNativeStackNavigator();
+let Drawer = createDrawerNavigator();
 function App() {
   function LogoTitle() {
     return (
@@ -24,9 +28,44 @@ function App() {
       />
     );
   }
+  function DrawerScreen() {
+    return (
+      <Drawer.Navigator
+        screenOptions={{
+          headerTintColor: 'yellow',
+          headerStyle: {backgroundColor: 'black'},
+          headerTitleStyle: {fontSize: 22, fontWeight: '400'},
+          contentStyle: {backgroundColor: 'pink'},
+          drawerStyle: {backgroundColor: 'yellow'},
+          drawerActiveTintColor: 'white',
+          drawerActiveBackgroundColor: 'black',
+          drawerInactiveTintColor: 'black',
+        }}>
+        <Drawer.Screen
+          name="Categories"
+          component={CategoriesScreen}
+          options={{
+            title: 'All Categories',
+            drawerIcon: ({tintColor}) => {
+              <Image
+                source={require('./Assests/nature.png')}
+                style={{width: 24, height: 24}}
+                tintColor={tintColor}
+              />;
+            },
+          }}
+        />
+        <Drawer.Screen
+          name="Favourite"
+          component={FavouriteScreen}
+          options={{}}
+        />
+      </Drawer.Navigator>
+    );
+  }
   return (
     // <View></View>
-
+<FavoritesContextProvider>
     <NavigationContainer>
       {/* can also set root screen from Navigator  */}
       {/* <Stack.Navigator initialRouteName='MealsOverView'>  */}
@@ -35,19 +74,18 @@ function App() {
           headerTintColor: 'yellow',
           headerStyle: {backgroundColor: 'black'},
           headerTitleStyle: {fontSize: 22, fontWeight: '400'},
-          contentStyle: {
-            backgroundColor:'pink'
-          }
+          contentStyle: {backgroundColor: 'pink'},
         }}>
         {/* Otherwise first element will become root components */}
+
         <Stack.Screen
-        name="MealsCategories"
-        component={CategoriesScreen}
-        options={{title: 'Meal Categories'}}
+          name="Meals"
+          component={DrawerScreen}
+          options={{headerShown: false}}
           //options={{ title: "Meal Categories", headerTitle: (props) => <LogoTitle {...props} />}}
         />
         <Stack.Screen
-        name="MealsOverView"
+          name="MealsOverView"
           component={MealsOverScreen}
           options={{
             headerRight: () => (
@@ -62,10 +100,11 @@ function App() {
         <Stack.Screen
           name="MealDeail"
           component={MealDetailScreen}
-          options={{title: 'Meal Detail'}}
+          options={{title: 'About the Meal'}}
         />
       </Stack.Navigator>
     </NavigationContainer>
+    </FavoritesContextProvider>
   );
 }
 export default App;
