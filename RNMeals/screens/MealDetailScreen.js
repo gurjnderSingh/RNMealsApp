@@ -1,25 +1,45 @@
-import React, {useLayoutEffect} from 'react';
-import {View, Text, StyleSheet, Image, ScrollView, Button} from 'react-native';
+import React, {useLayoutEffect, useContext} from 'react';
+import {View, Text, StyleSheet, Image, ScrollView, Pressable} from 'react-native';
 import {MEALS} from '../data/dummy-data';
 import MealDetail from '../components/MealDetail';
 import SubTitle from '../components/MealDetail/SubTitle';
 import List from '../components/MealDetail/List';
-function MealDetailScreen({route, navigation}) {
-  const id = route.params.mealId;
-  const selectedMeals = MEALS.find(meals => meals.id == id);
+import { FavoritesContext } from '../Store/Context/Favourite-Context';
 
-  function handlePress() {
-    alert('Pressed');
+function MealDetailScreen({route, navigation}) {
+
+  const favMealContext = useContext(FavoritesContext);
+
+  const mealId = route.params.mealId;
+
+  const selectedMeals = MEALS.find(meals => meals.id == mealId);
+
+  const isFav = favMealContext.ids.includes(mealId);
+
+  function makFavUnFavMeal() {
+    if (isFav) {
+      favMealContext.removeFavorite(mealId)
+    } else {
+      favMealContext.addFavorite(mealId)
+    }
   }
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
-        return <Button title="Fav" onPress={handlePress} />
+        return <Pressable onPress={makFavUnFavMeal}>
+          <Image
+           source={isFav ? require('../Assests/Fav.png') : require('../Assests/unFav.png') }
+           style={{height: 20, width: 20, backgroundColor:'white'}}
+           />
+        </Pressable>
       },
     });
-  }, [navigation, handlePress]);
+  }, [navigation, makFavUnFavMeal]);
   return (
     <ScrollView style={style.rootContainer}>
+      {console.log('Meal id is ',mealId)}
+      {console.log('favMealContext.ids id is ',favMealContext.ids)}
+      
       <Image source={{uri: selectedMeals.imageUrl}} style={style.image} />
       <Text style={style.title}> {selectedMeals.title}</Text>
       <View>
