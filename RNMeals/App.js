@@ -15,7 +15,9 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import MealDetailScreen from './screens/MealDetailScreen';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import FavouriteScreen from './screens/FavouriteScreen';
-import FavoritesContextProvider from './Store/Context/Favourite-Context';
+// import FavoritesContextProvider from './Store/Context/Favourite-Context';
+import Provider from 'react-redux';
+import {store} from './Redux/store';
 
 let Stack = createNativeStackNavigator();
 let Drawer = createDrawerNavigator();
@@ -65,7 +67,8 @@ function App() {
   }
   return (
     // <View></View>
-<FavoritesContextProvider>
+    <Provider store={store}>
+{/* <FavoritesContextProvider> */}
     <NavigationContainer>
       {/* can also set root screen from Navigator  */}
       {/* <Stack.Navigator initialRouteName='MealsOverView'>  */}
@@ -104,7 +107,8 @@ function App() {
         />
       </Stack.Navigator>
     </NavigationContainer>
-    </FavoritesContextProvider>
+    {/* </FavoritesContextProvider> */}
+    </Provider>
   );
 }
 export default App;

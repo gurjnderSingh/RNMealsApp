@@ -1,45 +1,64 @@
 import React, {useLayoutEffect, useContext} from 'react';
-import {View, Text, StyleSheet, Image, ScrollView, Pressable} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  Pressable,
+} from 'react-native';
 import {MEALS} from '../data/dummy-data';
 import MealDetail from '../components/MealDetail';
 import SubTitle from '../components/MealDetail/SubTitle';
 import List from '../components/MealDetail/List';
-import { FavoritesContext } from '../Store/Context/Favourite-Context';
+// import {FavoritesContext} from '../Store/Context/Favourite-Context';
+import {useDispatch, useSelector} from 'react-redux'
+import {removeFavorite, addFavorite } from '../Redux/favorite'
 
 function MealDetailScreen({route, navigation}) {
-
-  const favMealContext = useContext(FavoritesContext);
+  // const favMealContext = useContext(FavoritesContext);
+  const favMealsIds = useSelector((state)=> state.favoriteMeals.id)
+  const dispatch = useDispatch()
 
   const mealId = route.params.mealId;
 
   const selectedMeals = MEALS.find(meals => meals.id == mealId);
 
-  const isFav = favMealContext.ids.includes(mealId);
+ // const isFav = favMealContext.ids.includes(mealId);
+ const isFav = favMealsIds.includes(mealId);
 
   function makFavUnFavMeal() {
     if (isFav) {
-      favMealContext.removeFavorite(mealId)
+      //favMealContext.removeFavorite(mealId);
+      dispatch(removeFavorite({id: mealId}))
     } else {
-      favMealContext.addFavorite(mealId)
+     // favMealContext.addFavorite(mealId);
+     dispatch(addFavorite({id: mealId}))
     }
   }
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
-        return <Pressable onPress={makFavUnFavMeal}>
-          <Image
-           source={isFav ? require('../Assests/Fav.png') : require('../Assests/unFav.png') }
-           style={{height: 20, width: 20, backgroundColor:'white'}}
-           />
-        </Pressable>
+        return (
+          <Pressable onPress={makFavUnFavMeal}>
+            <Image
+              source={
+                isFav
+                  ? require('../Assests/Fav.png')
+                  : require('../Assests/unFav.png')
+              }
+              style={{height: 20, width: 20, backgroundColor: 'white'}}
+            />
+          </Pressable>;
+        );
       },
     });
   }, [navigation, makFavUnFavMeal]);
   return (
     <ScrollView style={style.rootContainer}>
-      {console.log('Meal id is ',mealId)}
-      {console.log('favMealContext.ids id is ',favMealContext.ids)}
-      
+      {console.log('Meal id is ', mealId)}
+      {console.log('favMealContext.ids id is ', favMealContext.ids)}
+
       <Image source={{uri: selectedMeals.imageUrl}} style={style.image} />
       <Text style={style.title}> {selectedMeals.title}</Text>
       <View>
