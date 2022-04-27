@@ -32,8 +32,8 @@ function App() {
     return (
       <Drawer.Navigator
         screenOptions={{
-          headerTintColor: 'yellow',
-          headerStyle: {backgroundColor: 'black'},
+          headerTintColor: 'brown',
+          // headerStyle: {backgroundColor: 'black'},
           headerTitleStyle: {fontSize: 22, fontWeight: '400'},
           contentStyle: {backgroundColor: 'pink'},
           drawerStyle: {backgroundColor: 'yellow'},
@@ -71,8 +71,8 @@ function App() {
       {/* <Stack.Navigator initialRouteName='MealsOverView'>  */}
       <Stack.Navigator
         screenOptions={{
-          headerTintColor: 'yellow',
-          headerStyle: {backgroundColor: 'black'},
+          headerTintColor: 'brown',
+          headerStyle: {backgroundColor: 'white'},
           headerTitleStyle: {fontSize: 22, fontWeight: '400'},
           contentStyle: {backgroundColor: 'pink'},
         }}>
