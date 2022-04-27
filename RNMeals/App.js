@@ -15,8 +15,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import MealDetailScreen from './screens/MealDetailScreen';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import FavouriteScreen from './screens/FavouriteScreen';
-// import FavoritesContextProvider from './Store/Context/Favourite-Context';
-import Provider from 'react-redux';
+import FavoritesContextProvider from './Store/Context/Favourite-Context';
+import {Provider} from 'react-redux';
 import {store} from './Redux/store';
 
 let Stack = createNativeStackNavigator();
@@ -63,52 +63,54 @@ function App() {
           options={{}}
         />
       </Drawer.Navigator>
-    );
+    )
   }
   return (
-    // <View></View>
+    //<FavoritesContextProvider>
     <Provider store={store}>
-{/* <FavoritesContextProvider> */}
-    <NavigationContainer>
-      {/* can also set root screen from Navigator  */}
-      {/* <Stack.Navigator initialRouteName='MealsOverView'>  */}
-      <Stack.Navigator
-        screenOptions={{
-          headerTintColor: 'brown',
-          headerStyle: {backgroundColor: 'white'},
-          headerTitleStyle: {fontSize: 22, fontWeight: '400'},
-          contentStyle: {backgroundColor: 'pink'},
-        }}>
-        {/* Otherwise first element will become root components */}
+      <NavigationContainer>
+        {/* can also set root screen from Navigator  */}
+        {/* <Stack.Navigator initialRouteName='MealsOverView'>  */}
+        <Stack.Navigator
+          screenOptions={{
+            headerTintColor: 'brown',
+            headerStyle: {backgroundColor: 'white'},
+            headerTitleStyle: {fontSize: 22, fontWeight: '400'},
+            contentStyle: {backgroundColor: 'pink'},
+          }}>
+          {/* Otherwise first element will become root components */}
 
-        <Stack.Screen
-          name="Meals"
-          component={DrawerScreen}
-          options={{headerShown: false}}
-          //options={{ title: "Meal Categories", headerTitle: (props) => <LogoTitle {...props} />}}
-        />
-        <Stack.Screen
-          name="MealsOverView"
-          component={MealsOverScreen}
-          options={{
-            headerRight: () => (
-              <Button title="Press" onPress={() => alert('This is a button')} />
-            ),
-            // ({route, navigation})=>  {
-            //   const catId = route.params.categoryId
-            //   return (catId)
-            // }
-          }}
-        />
-        <Stack.Screen
-          name="MealDeail"
-          component={MealDetailScreen}
-          options={{title: 'About the Meal'}}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
-    {/* </FavoritesContextProvider> */}
-    </Provider>
+          <Stack.Screen
+            name="Meals"
+            component={DrawerScreen}
+            options={{headerShown: false}}
+            //options={{ title: "Meal Categories", headerTitle: (props) => <LogoTitle {...props} />}}
+          />
+          <Stack.Screen
+            name="MealsOverView"
+            component={MealsOverScreen}
+            options={{
+              headerRight: () => (
+                <Button
+                  title="Press"
+                  onPress={() => alert('This is a button')}
+                />
+              ),
+              // ({route, navigation})=>  {
+              //   const catId = route.params.categoryId
+              //   return (catId)
+              // }
+            }}
+          />
+          <Stack.Screen
+            name="MealDeail"
+            component={MealDetailScreen}
+            options={{title: 'About the Meal'}}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+      </Provider>
+// </FavoritesContextProvider>
   );
 }
 export default App;

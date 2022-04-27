@@ -11,8 +11,12 @@ function MealDetail({
   return (
     <View style={[style.detail, viewStyle]}>
       <Text style={[style.detailItem, titleStyle]}>{duration}m</Text>
-      <Text style={[style.detailItem, titleStyle]}>{complexity.toUpperCase()}</Text>
-      <Text style={[style.detailItem, titleStyle]}>{affordability.toUpperCase()}</Text>
+      <Text style={[style.detailItem, titleStyle]}>
+        {complexity.toUpperCase()}
+      </Text>
+      <Text style={[style.detailItem, titleStyle]}>
+        {affordability.toUpperCase()}
+      </Text>
     </View>
   );
 }

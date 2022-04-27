@@ -21,7 +21,7 @@ function CategoryGridTile({title, color, onPressCell}) {
         </View>
       </Pressable>
     </View>
-  );;
+  );
 }
 
 export default CategoryGridTile;

@@ -12,28 +12,32 @@ import MealDetail from '../components/MealDetail';
 import SubTitle from '../components/MealDetail/SubTitle';
 import List from '../components/MealDetail/List';
 // import {FavoritesContext} from '../Store/Context/Favourite-Context';
-import {useDispatch, useSelector} from 'react-redux'
-import {removeFavorite, addFavorite } from '../Redux/favorite'
+import {useDispatch, useSelector} from 'react-redux';
+import {removeFavorite, addFavorite} from '../Redux/favorite';
 
 function MealDetailScreen({route, navigation}) {
   // const favMealContext = useContext(FavoritesContext);
-  const favMealsIds = useSelector((state)=> state.favoriteMeals.id)
-  const dispatch = useDispatch()
+  const favMealsIds = useSelector((state) => state.favoriteMeals.ids);
+  const dispatch = useDispatch();
 
   const mealId = route.params.mealId;
 
-  const selectedMeals = MEALS.find(meals => meals.id == mealId);
+  const selectedMeals = MEALS.find(meals => meals.id === mealId);
 
- // const isFav = favMealContext.ids.includes(mealId);
- const isFav = favMealsIds.includes(mealId);
+  //  const isFav = favMealContext.ids.includes(mealId);
+  const isFav = favMealsIds.includes(mealId);
+  //  const isFav = true
 
   function makFavUnFavMeal() {
     if (isFav) {
-      //favMealContext.removeFavorite(mealId);
-      dispatch(removeFavorite({id: mealId}))
+      // favMealContext.removeFavorite(mealId);
+      console.log('remove ',mealId)
+      dispatch(removeFavorite({ id: mealId}));
+      
     } else {
-     // favMealContext.addFavorite(mealId);
-     dispatch(addFavorite({id: mealId}))
+      console.log('add ',mealId)
+      //  favMealContext.addFavorite(mealId);
+      dispatch(addFavorite({ id: mealId}));
     }
   }
   useLayoutEffect(() => {
@@ -49,7 +53,7 @@ function MealDetailScreen({route, navigation}) {
               }
               style={{height: 20, width: 20, backgroundColor: 'white'}}
             />
-          </Pressable>;
+          </Pressable>
         );
       },
     });
@@ -57,7 +61,7 @@ function MealDetailScreen({route, navigation}) {
   return (
     <ScrollView style={style.rootContainer}>
       {console.log('Meal id is ', mealId)}
-      {console.log('favMealContext.ids id is ', favMealContext.ids)}
+      {/* {console.log('favMealContext.ids id is ', favMealContext.ids)} */}
 
       <Image source={{uri: selectedMeals.imageUrl}} style={style.image} />
       <Text style={style.title}> {selectedMeals.title}</Text>
