@@ -1,12 +1,11 @@
 import React, {useEffect} from 'react';
-import {View, Text, StyleSheet, FlatList} from 'react-native';
 import {CATEGORIES, MEALS} from '../data/dummy-data';
-import {useRoute} from '@react-navigation/native';
-import MealItem from '../components/MealItem';
+// import {useRoute} from '@react-navigation/native';
+import MealList from '../components/MealList/MealList';
 
 function MealsOverScreen({route, navigation}) {
   // route will receive data passed while pushing this UI
-  // const route = useRoute()
+  // const route = useRoute() - second way to get route
   const catId = route.params.categoryId; // route.params is predefind + category is passed receiving data
   //    const name = route.params.name
   const displayMeals = MEALS.filter(mealItem => {
@@ -22,41 +21,7 @@ function MealsOverScreen({route, navigation}) {
     });
   }, [catId, navigation]);
 
- 
-  function renderMealItem(itemData) {
-    const item = itemData.item;
-
-    function goToMealDetailScreen() {
-      console.log('meal is is', item.id)
-      navigation.navigate('MealDeail',{
-        mealId: item.id
-      });
-    }
-    const allData = {
-      title: item.title,
-      imageUrl: item.imageUrl,
-      duration: item.duration,
-      affordability: item.affordability,
-      complexity: item.complexity,
-      onPressMealDetail: goToMealDetailScreen,
-    };
-    return <MealItem {...allData} />;
-  }
-  return (
-    <View style={style.container}>
-      <FlatList
-        data={displayMeals}
-        keyExtractor={item => item.id}
-        renderItem={renderMealItem}
-      />
-    </View>
-  );
+  return <MealList items={displayMeals} />;
 }
 
 export default MealsOverScreen;
-const style = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 5,
-  },
-});

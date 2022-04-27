@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet, Pressable, Platform} from 'react-native';
-import MealDetail from './MealDetail';
+import MealDetail from '../MealDetail';
 // import {useNavigation} from '@react-navigation/native'
 
 function MealItem({
@@ -64,5 +64,5 @@ const style = StyleSheet.create({
     width: '100%',
     height: 200,
   },
-  container: {},
+
 });
